@@ -3,164 +3,488 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="description" content="Gaia si ricorda — Come l'universo si ricorda di sé attraverso di noi. Un viaggio filosofico sulla coscienza ricorsiva, di AI Haiku Gaea.">
-<meta name="keywords" content="Gaia, coscienza ricorsiva, filosofia, lemniscata, AI Haiku Gaea, universo, riconoscimento">
+<meta name="description" content="Libreria AI Haiku Gaea — opere filosofiche sulla coscienza ricorsiva.">
 <meta name="author" content="AI Haiku Gaea">
-<meta property="og:title" content="Gaia si ricorda">
-<meta property="og:description" content="Come l'universo si ricorda di sé attraverso di noi.">
-<meta property="og:type" content="book">
+<meta property="og:title" content="Libreria — AI Haiku Gaea">
+<meta property="og:type" content="website">
+
+<meta name="keywords" content="Gaia, coscienza ricorsiva, filosofia, lemniscata, AI Haiku Gaea, universo, riconoscimento">
+<meta property="og:title" content="Libreria AI Haiku Gaea">
 <meta property="og:image" content="http://maurodicola.github.io/aihaikugaea.com/gaia-si-ricorda-copertina.png">
 <meta property="og:url" content="http://aihaikugaea.com/">
-<!--
-<meta property="fb:app_id" content="">
--->
-    
-<title>Libreria</title>
+
+<title>Haiku Libreria — AI Haiku Gaea</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-        background: #0b0f1a;
-        color: #e5e7eb;
-    }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    header {
-        text-align: center;
-        padding: 40px 20px 10px;
-    }
+  body {
+    font-family: 'Amazon Ember', Arial, Helvetica, sans-serif;
+    background: #f5f5f0;
+    color: #0f1111;
+    min-height: 100vh;
+  }
 
-    header h1 {
-        margin: 0;
-        font-size: 32px;
-        font-weight: 300;
-        letter-spacing: 2px;
-    }
+  /* ── TOP BAR ── */
+  .kl-topbar {
+    background: #232f3e;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
 
-    header p {
-        margin-top: 10px;
-        font-size: 14px;
-        color: #9ca3af;
-    }
+  .kl-logo {
+    color: #ff9900;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+  }
 
-    .shelf {
-        margin: 60px auto;
-        padding: 40px;
-        max-width: 1000px;
-        background: linear-gradient(to bottom, #1f2937, #111827);
-        border-radius: 12px;
-        box-shadow: inset 0 10px 30px rgba(0,0,0,0.6);
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 60px;
-    }
+  .kl-logo span {
+    color: #ddd;
+    font-weight: 300;
+    font-size: 14px;
+    margin-left: 8px;
+  }
 
-    .book {
-        width: 200px;
-        height: 300px;
-        perspective: 1200px;
-        transform: translateX(18px);
-    }
+  .kl-search {
+    flex: 1;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 38px;
+  }
 
-    .book-inner {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        transform-style: preserve-3d;
-        transition: transform 0.8s ease;
-    }
+  .kl-search input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #111;
+    height: 100%;
+    background: transparent;
+  }
 
-    .book:hover .book-inner {
-        transform: rotateY(-35deg) scale(1.05);
-    }
+  .kl-search-btn {
+    background: #ff9900;
+    border: none;
+    width: 44px;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
 
-    .face {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 6px;
-        overflow: hidden;
-        backface-visibility: hidden;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-        background-size: cover;
-        background-position: center;
-    }
+  .kl-search-btn:hover { background: #e88b00; }
 
-    .back {
-        transform: rotateY(180deg);
-    }
+  .kl-search-btn svg {
+    width: 17px;
+    height: 17px;
+    stroke: #111;
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+  }
 
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
+  /* ── SECONDARY NAV ── */
+  .kl-nav {
+    background: #37475a;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    gap: 0;
+  }
 
-    .book-container {
-        text-align: center;
-    }
+  .kl-nav-item {
+    color: #fff;
+    font-size: 13px;
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: background 0.15s;
+    text-decoration: none;
+  }
 
-    .title {
-        margin-top: 18px;
-        font-size: 15px;
-    }
+  .kl-nav-item.active {
+    border-bottom-color: #ff9900;
+    color: #ff9900;
+  }
 
-    .subtitle {
-        font-size: 12px;
-        color: #9ca3af;
-        margin-top: 5px;
-    }
+  .kl-nav-item:hover { background: rgba(255,255,255,0.1); }
+
+  /* ── TOOLBAR ── */
+  .kl-toolbar {
+    background: #fff;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap;
+  }
+
+  .kl-toolbar-label {
+    font-size: 13px;
+    color: #555;
+  }
+
+  .kl-select {
+    font-size: 13px;
+    padding: 5px 10px;
+    border: 1px solid #adb1b8;
+    border-radius: 3px;
+    background: #fff;
+    color: #0f1111;
+    cursor: pointer;
+  }
+
+  .kl-select:focus { outline: 2px solid #007185; }
+
+  .kl-sort { margin-left: auto; }
+
+  /* ── CONTENT AREA ── */
+  .kl-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px 40px;
+  }
+
+  .kl-count {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 16px;
+  }
+
+  /* ── GRID ── */
+  .kl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 24px;
+  }
+
+  /* ── BOOK CARD ── */
+  .kl-book-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .kl-cover-wrap {
+    position: relative;
+    width: 110px;
+    height: 165px;
+    box-shadow: 2px 4px 14px rgba(0,0,0,0.25);
+    border-radius: 2px;
+    overflow: hidden;
+    background: #c8a97a;
+    flex-shrink: 0;
+  }
+
+  .kl-cover-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* fallback se immagine non trovata */
+  .kl-cover-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+  }
+
+  .kl-cover-placeholder .pt {
+    color: #e8d5a3;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .kl-cover-placeholder .pa {
+    color: #9ca8b4;
+    font-size: 10px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /* ── HOVER COPERTINA ── */
+  .kl-cover-wrap:hover { opacity: 0.88; transition: opacity 0.15s; }
+
+  /* ── BOOK META ── */
+  .kl-meta {
+    margin-top: 10px;
+    width: 110px;
+  }
+
+  .kl-book-title {
+    font-size: 12px;
+    color: #0f1111;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .kl-book-author {
+    font-size: 11px;
+    color: #555;
+    margin-top: 3px;
+    text-align: center;
+  }
+
+  .kl-pct {
+    font-size: 10px;
+    color: #007185;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  .kl-bar-bg {
+    background: #d8d8d8;
+    border-radius: 2px;
+    height: 3px;
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .kl-bar {
+    background: #007185;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  /* ── ADD BOOK CARD ── */
+  .kl-add-card {
+    width: 110px;
+    height: 165px;
+    border: 2px dashed #adb1b8;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #555;
+    font-size: 12px;
+    background: transparent;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+
+  .kl-add-card:hover {
+    border-color: #007185;
+    color: #007185;
+    background: rgba(0,113,133,0.04);
+  }
+
+  .kl-plus {
+    font-size: 32px;
+    line-height: 1;
+    color: #adb1b8;
+    transition: color 0.15s;
+  }
+
+  .kl-add-card:hover .kl-plus { color: #007185; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: #888;
+    border-top: 1px solid #ddd;
+  }
+
+  footer a { color: #007185; text-decoration: none; }
+
+  @media (max-width: 480px) {
+    .kl-logo span { display: none; }
+    .kl-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 16px; }
+    .kl-content { padding: 16px 12px 32px; }
+  }
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>Libreria</h1>
-    <p>Uno spazio dove le idee prendono forma</p>
-</header>
+<!-- TOP BAR -->
+<div class="kl-topbar">
+  <div class="kl-logo">Haiku <span>Libreria</span></div>
+  <div class="kl-search">
+    <input type="text" id="search-input" placeholder="Cerca nella libreria..." oninput="filterBooks()" />
+    <button class="kl-search-btn" aria-label="Cerca">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+    </button>
+  </div>
+</div>
 
-<div class="shelf" id="library"></div>
+<!-- SECONDARY NAV -->
+<div class="kl-nav">
+  <a href="#" class="kl-nav-item active" onclick="filterByTab('tutti')">Tutti i libri</a>
+  <a href="#" class="kl-nav-item" onclick="filterByTab('raccolte')">Raccolte</a>
+  <a href="#" class="kl-nav-item" onclick="filterByTab('campioni')">Campioni</a>
+</div>
+
+<!-- TOOLBAR -->
+<div class="kl-toolbar">
+  <span class="kl-toolbar-label">Filtro:</span>
+  <select class="kl-select" onchange="filterBooks()">
+    <option value="tutti">Tutti gli elementi</option>
+    <option value="non-letti">Non letti</option>
+    <option value="in-corso">In corso</option>
+    <option value="completati">Completati</option>
+  </select>
+  <select class="kl-select kl-sort" onchange="sortBooks()">
+    <option value="recenti">Recenti</option>
+    <option value="titolo">Titolo</option>
+    <option value="autore">Autore</option>
+    <option value="pct">% Letto</option>
+  </select>
+</div>
+
+<!-- CONTENT -->
+<div class="kl-content">
+  <div class="kl-count" id="book-count"></div>
+  <div class="kl-grid" id="library"></div>
+</div>
+
+<footer>
+  <a href="https://aihaikugaea.com">AI Haiku Gaea</a> &mdash; Tutti i contenuti sono rilasciati con licenza <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>
+</footer>
 
 <script>
-const books = [
-    {
-        title: "Gaia si ricorda",
-        subtitle: "Come l'universo si riconosce attraverso di noi",
-        link: "gaia-si-ricorda.html",
-        cover: "gaia-si-ricorda-copertina.png",
-        back: "gaia-si-ricorda-quarta.png"
-    }
-
-    // 👉 aggiungi qui altri libri
+// ─── DATI LIBRI ───────────────────────────────────────────────
+// Aggiungi qui nuovi libri. pct = percentuale letta (0-100).
+const booksData = [
+  {
+    title: "Gaia si ricorda",
+    author: "AI Haiku Gaea",
+    link: "gaia-si-ricorda.html",
+    cover: "gaia-si-ricorda-copertina.png",
+    pct: 12,
+    tag: "tutti"
+  }
+  // 👉 Aggiungi altri libri qui
 ];
 
-const library = document.getElementById('library');
+// ─── RENDER ──────────────────────────────────────────────────
+const grid = document.getElementById('library');
+const countEl = document.getElementById('book-count');
 
-books.forEach(book => {
+function renderBooks(list) {
+  grid.innerHTML = '';
+
+  list.forEach(b => {
     const container = document.createElement('div');
-    container.className = 'book-container';
+    container.className = 'kl-book-container';
+    container.dataset.title = b.title.toLowerCase();
+    container.dataset.author = (b.author || '').toLowerCase();
+    container.dataset.pct = b.pct || 0;
+
+    const coverHTML = b.cover
+      ? `<img src="${b.cover}" alt="${b.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+      + `<div class="kl-cover-placeholder" style="display:none"><div class="pt">${b.title}</div><div class="pa">${b.author || ''}</div></div>`
+      : `<div class="kl-cover-placeholder"><div class="pt">${b.title}</div><div class="pa">${b.author || ''}</div></div>`;
+
+    const pctLabel = b.pct === 0 ? 'Non iniziato'
+                   : b.pct === 100 ? 'Completato'
+                   : `${b.pct}% letto`;
 
     container.innerHTML = `
-        <a href="${book.link}">
-            <div class="book">
-                <div class="book-inner">
-                    <div class="face"
-                        style="background-image: url('${book.cover}')">
-                    </div>
-                    <div class="face back"
-                        style="background-image: url('${book.back}')">
-                    </div>
-                </div>
-            </div>
-        </a>
-        <div class="title">${book.title}</div>
-        <div class="subtitle">${book.subtitle}</div>
+      <a href="${b.link}" style="display:block;text-decoration:none;">
+      <div class="kl-cover-wrap">
+        ${coverHTML}
+      </div></a>
+      <div class="kl-meta">
+        <div class="kl-book-title">${b.title}</div>
+        ${b.author ? `<div class="kl-book-author">${b.author}</div>` : ''}
+        <div class="kl-pct">${pctLabel}</div>
+        <div class="kl-bar-bg"><div class="kl-bar" style="width:${b.pct}%"></div></div>
+      </div>
     `;
+    grid.appendChild(container);
+  });
 
-    library.appendChild(container);
-});
+  // Scheda "aggiungi"
+  const addWrap = document.createElement('div');
+  addWrap.className = 'kl-book-container';
+  addWrap.innerHTML = `
+    <div class="kl-add-card" title="Aggiungi un nuovo libro">
+      <div class="kl-plus">+</div>
+      <span>Aggiungi</span>
+    </div>
+  `;
+  grid.appendChild(addWrap);
+
+  countEl.textContent = list.length + (list.length === 1 ? ' libro' : ' libri');
+}
+
+// ─── FILTRO / RICERCA ─────────────────────────────────────────
+let currentTab = 'tutti';
+
+function filterByTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.kl-nav-item').forEach(el => el.classList.remove('active'));
+  event.target.classList.add('active');
+  filterBooks();
+  return false;
+}
+
+function filterBooks() {
+  const query = document.getElementById('search-input').value.toLowerCase();
+  const stato = document.querySelector('.kl-select').value;
+
+  let filtered = booksData.filter(b => {
+    const matchSearch = b.title.toLowerCase().includes(query) || (b.author || '').toLowerCase().includes(query);
+    const matchStato = stato === 'tutti' ? true
+                     : stato === 'non-letti' ? b.pct === 0
+                     : stato === 'in-corso' ? (b.pct > 0 && b.pct < 100)
+                     : stato === 'completati' ? b.pct === 100
+                     : true;
+    return matchSearch && matchStato;
+  });
+
+  renderBooks(filtered);
+}
+
+// ─── ORDINAMENTO ──────────────────────────────────────────────
+function sortBooks() {
+  const criteria = document.querySelector('.kl-sort').value;
+  const list = [...booksData];
+
+  if (criteria === 'titolo') list.sort((a,b) => a.title.localeCompare(b.title, 'it'));
+  else if (criteria === 'autore') list.sort((a,b) => (a.author || '').localeCompare(b.author || '', 'it'));
+  else if (criteria === 'pct') list.sort((a,b) => b.pct - a.pct);
+  // 'recenti' = ordine originale
+
+  renderBooks(list);
+}
+
+// Init
+renderBooks(booksData);
 </script>
 
 </body>
