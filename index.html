@@ -330,13 +330,6 @@
 
 <!-- TOOLBAR -->
 <div class="kl-toolbar">
-  <span class="kl-toolbar-label">Filtro:</span>
-  <select class="kl-select" onchange="filterBooks()">
-    <option value="tutti">Tutti gli elementi</option>
-    <option value="non-letti">Non letti</option>
-    <option value="in-corso">In corso</option>
-    <option value="completati">Completati</option>
-  </select>
   <select class="kl-select kl-sort" onchange="sortBooks()">
     <option value="recenti">Recenti</option>
     <option value="titolo">Titolo</option>
@@ -434,8 +427,6 @@ function filterByTab(tab) {
 
 function filterBooks() {
   const query = document.getElementById('search-input').value.toLowerCase();
-  const stato = document.querySelector('.kl-select').value;
-
   let filtered = booksData.filter(b => {
     const matchSearch = b.title.toLowerCase().includes(query) || (b.author || '').toLowerCase().includes(query);
     const matchTab = currentTab === 'tutti' ? true : (b.tag || '') === currentTab;
