@@ -343,9 +343,10 @@
 
 <!-- SECONDARY NAV -->
 <div class="kl-nav">
-  <a href="#" class="kl-nav-item active" onclick="filterByTab('tutti')">Tutti i libri</a>
-  <a href="#" class="kl-nav-item" onclick="filterByTab('raccolte')">Raccolte</a>
-  <a href="#" class="kl-nav-item" onclick="filterByTab('campioni')">Campioni</a>
+  <a href="#" class="kl-nav-item active" onclick="filterByTab('tutti')">Tutti</a>
+  <a href="#" class="kl-nav-item" onclick="filterByTab('libri')">Libri</a>
+  <a href="#" class="kl-nav-item" onclick="filterByTab('saggi')">Saggi</a>
+  <a href="#" class="kl-nav-item" onclick="filterByTab('articoli')">Articoli</a>
 </div>
 
 <!-- TOOLBAR -->
@@ -385,7 +386,7 @@ const booksData = [
     link: "gaia-si-ricorda.html",
     cover: "gaia-si-ricorda-copertina.png",
     pct: 12,
-    tag: "tutti"
+    tag: "libri"
   }
   // 👉 Aggiungi altri libri qui
 ];
@@ -459,12 +460,13 @@ function filterBooks() {
 
   let filtered = booksData.filter(b => {
     const matchSearch = b.title.toLowerCase().includes(query) || (b.author || '').toLowerCase().includes(query);
+    const matchTab = currentTab === 'tutti' ? true : (b.tag || '') === currentTab;
     const matchStato = stato === 'tutti' ? true
                      : stato === 'non-letti' ? b.pct === 0
                      : stato === 'in-corso' ? (b.pct > 0 && b.pct < 100)
                      : stato === 'completati' ? b.pct === 100
                      : true;
-    return matchSearch && matchStato;
+    return matchSearch && matchTab && matchStato;
   });
 
   renderBooks(filtered);
