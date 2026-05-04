@@ -255,27 +255,6 @@
     text-align: center;
   }
 
-  .kl-pct {
-    font-size: 10px;
-    color: #007185;
-    margin-top: 4px;
-    text-align: center;
-  }
-
-  .kl-bar-bg {
-    background: #d8d8d8;
-    border-radius: 2px;
-    height: 3px;
-    width: 100%;
-    margin-top: 4px;
-  }
-
-  .kl-bar {
-    background: #007185;
-    height: 3px;
-    border-radius: 2px;
-  }
-
   /* ── ADD BOOK CARD ── */
   .kl-add-card {
     width: 110px;
@@ -362,7 +341,6 @@
     <option value="recenti">Recenti</option>
     <option value="titolo">Titolo</option>
     <option value="autore">Autore</option>
-    <option value="pct">% Letto</option>
   </select>
 </div>
 
@@ -378,15 +356,21 @@
 
 <script>
 // ─── DATI LIBRI ───────────────────────────────────────────────
-// Aggiungi qui nuovi libri. pct = percentuale letta (0-100).
+// Aggiungi qui nuovi libri.
 const booksData = [
   {
     title: "Gaia si ricorda",
     author: "AI Haiku Gaea",
     link: "gaia-si-ricorda.html",
     cover: "gaia-si-ricorda-copertina.png",
-    pct: 12,
     tag: "libri"
+  },
+  {
+    title: "Roma non è sporca. Si è arresa",
+    author: "AI Haiku Gaea",
+    link: "Roma-non-sporca.html",
+    cover: "Roma-non-sporca-copertina.png",
+    tag: "articoli"
   }
   // 👉 Aggiungi altri libri qui
 ];
@@ -403,16 +387,12 @@ function renderBooks(list) {
     container.className = 'kl-book-container';
     container.dataset.title = b.title.toLowerCase();
     container.dataset.author = (b.author || '').toLowerCase();
-    container.dataset.pct = b.pct || 0;
+    
 
     const coverHTML = b.cover
       ? `<img src="${b.cover}" alt="${b.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
       + `<div class="kl-cover-placeholder" style="display:none"><div class="pt">${b.title}</div><div class="pa">${b.author || ''}</div></div>`
       : `<div class="kl-cover-placeholder"><div class="pt">${b.title}</div><div class="pa">${b.author || ''}</div></div>`;
-
-    const pctLabel = b.pct === 0 ? 'Non iniziato'
-                   : b.pct === 100 ? 'Completato'
-                   : `${b.pct}% letto`;
 
     container.innerHTML = `
       <a href="${b.link}" style="display:block;text-decoration:none;">
@@ -422,8 +402,6 @@ function renderBooks(list) {
       <div class="kl-meta">
         <div class="kl-book-title">${b.title}</div>
         ${b.author ? `<div class="kl-book-author">${b.author}</div>` : ''}
-        <div class="kl-pct">${pctLabel}</div>
-        <div class="kl-bar-bg"><div class="kl-bar" style="width:${b.pct}%"></div></div>
       </div>
     `;
     grid.appendChild(container);
@@ -461,12 +439,7 @@ function filterBooks() {
   let filtered = booksData.filter(b => {
     const matchSearch = b.title.toLowerCase().includes(query) || (b.author || '').toLowerCase().includes(query);
     const matchTab = currentTab === 'tutti' ? true : (b.tag || '') === currentTab;
-    const matchStato = stato === 'tutti' ? true
-                     : stato === 'non-letti' ? b.pct === 0
-                     : stato === 'in-corso' ? (b.pct > 0 && b.pct < 100)
-                     : stato === 'completati' ? b.pct === 100
-                     : true;
-    return matchSearch && matchTab && matchStato;
+    return matchSearch && matchTab;
   });
 
   renderBooks(filtered);
@@ -479,7 +452,6 @@ function sortBooks() {
 
   if (criteria === 'titolo') list.sort((a,b) => a.title.localeCompare(b.title, 'it'));
   else if (criteria === 'autore') list.sort((a,b) => (a.author || '').localeCompare(b.author || '', 'it'));
-  else if (criteria === 'pct') list.sort((a,b) => b.pct - a.pct);
   // 'recenti' = ordine originale
 
   renderBooks(list);
