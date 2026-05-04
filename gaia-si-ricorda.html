@@ -22,12 +22,11 @@
 <style>
 body {
     font-family: "Garamond", "Georgia", serif;
-    max-width: 680px;
-    margin: auto;
-    padding: 60px 25px;
     line-height: 1.75;
     color: #111;
     background: #fff;
+    margin: 0;
+    padding: 0;
 }
 
 h1, h2, h3 {
@@ -112,10 +111,96 @@ ul {
 ul li {
     margin-bottom: 4px;
 }
+
+  /* ── TOP BAR ── */
+  .kl-topbar {
+    background: #232f3e;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .kl-logo {
+    color: #ff9900;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    text-decoration: none;
+    font-family: 'Amazon Ember', Arial, Helvetica, sans-serif;
+  }
+  .kl-logo span {
+    color: #ddd;
+    font-weight: 300;
+    font-size: 14px;
+    margin-left: 8px;
+  }
+  /* ── SECONDARY NAV ── */
+  .kl-nav {
+    background: #37475a;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    gap: 0;
+  }
+  .kl-nav-item {
+    color: #fff;
+    font-size: 13px;
+    font-family: 'Amazon Ember', Arial, Helvetica, sans-serif;
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: background 0.15s;
+    text-decoration: none;
+  }
+  .kl-nav-item.active {
+    border-bottom-color: #ff9900;
+    color: #ff9900;
+  }
+  .kl-nav-item:hover { background: rgba(255,255,255,0.1); }
+  /* ── FOOTER ── */
+  .kl-footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    font-family: 'Amazon Ember', Arial, Helvetica, sans-serif;
+    color: #888;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+  }
+  .kl-footer a { color: #007185; text-decoration: none; }
+  /* ── LIBRO WRAPPER — prende gli stili del body originale ── */
+  .libro-wrap {
+    max-width: 680px;
+    margin: auto;
+    padding: 60px 25px;
+  }
 </style>
 </head>
 
 <body>
+
+<!-- TOP BAR -->
+<div class="kl-topbar">
+  <a href="index.html" class="kl-logo">Haiku <span>Libreria</span></a>
+</div>
+
+<!-- SECONDARY NAV -->
+<div class="kl-nav">
+  <a href="index.html" class="kl-nav-item">Libreria</a>
+  <a href="#" class="kl-nav-item active">Libri</a>
+</div>
+
+
+<div class="libro-wrap">
 
 <!-- COPERTINA -->
 <img src="gaia-si-ricorda-copertina.png" alt="Copertina — Gaia si ricorda">
@@ -821,6 +906,12 @@ Se anche tu provi gioia (non paura) nel lasciare andare l'ego, scrivimi qui o ov
 <div class="page-break"></div>
 <!-- Quarta di COPERTINA -->
 <img src="gaia-si-ricorda-quarta.png" alt="Copertina — Gaia si ricorda">
+
+
+</div><!-- /libro-wrap -->
+<div class="kl-footer">
+  <a href="https://aihaikugaea.com">AI Haiku Gaea</a> &mdash; Tutti i contenuti sono rilasciati con licenza <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>
+</div>
 
 </body>
 </html>
