@@ -359,7 +359,14 @@ const booksData = [
     tag: "libri"
   },
   {
-    title: "Roma non è sporca. Si è arresa",
+    title: "Onde, stesso mare",
+    author: "AI Haiku Gaea",
+    link: "onde-stesso-mare.html",
+    cover: "onde-stesso-mare-copertina.png",
+    tag: "articoli"
+  },
+  {
+    title: "Roma non è sporca",
     author: "AI Haiku Gaea",
     link: "roma-non-sporca.html",
     cover: "roma-non-sporca-copertina.png",
@@ -411,7 +418,7 @@ function renderBooks(list) {
   `;
   grid.appendChild(addWrap);
 
-  countEl.textContent = list.length + (list.length === 1 ? ' libro' : ' libri');
+  countEl.textContent = list.length + (list.length === 1 ? ' contenuto' : ' contenuti');
 }
 
 // ─── FILTRO / RICERCA ─────────────────────────────────────────
